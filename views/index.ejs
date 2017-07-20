@@ -1,0 +1,44 @@
+<% include inc/header %>
+
+<ul>
+<% if(errors != undefined) { %>
+
+<% errors.forEach(function(error){ %>
+	<li> <%= error.msg %></li>
+	
+<% })%>
+
+<% }%>
+</ul>
+
+<form method="post" action="/customer/save">
+<table border=1>
+<tr>
+<td>Name</td>
+<td>Email</td>
+<td>Action</td>
+</tr>
+ 
+<tr>
+<td><input type="text" name="name"></td>
+<td><input type="email" name="email"></td>
+
+<td><button>Submit</button></td>
+</tr>
+
+<% customers.forEach(function(customer){ %>
+	<tr>
+	<td> <%= customer.name %></td>
+	<td> <%= customer.email %></td>
+	<td>
+	 <button type="button"> Update </button>
+	 <button type="button" data-id="<%= customer._id %>"> Delete </button>
+
+	</td>
+	</tr>
+<% }) %>
+</table>
+</form>
+
+
+<% include inc/footer %>
